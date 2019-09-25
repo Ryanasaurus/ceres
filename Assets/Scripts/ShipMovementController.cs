@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShipMovementController : MonoBehaviour
 {
     public float moveSpeed = 10f;
-    public float turnSpeed = 0.01f;
+    public float turnSpeed = 1f;
     private Vector3 targetPosition;
     private Vector2 rotateVector;
 
@@ -22,7 +22,7 @@ public class ShipMovementController : MonoBehaviour
 
             float rotateAngle = (Mathf.Atan2(rotateVector.y, rotateVector.x) * Mathf.Rad2Deg) - 90;
             Quaternion rotation = Quaternion.AngleAxis(rotateAngle, Vector3.forward);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, moveSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, turnSpeed * Time.deltaTime);
         }
     }
 }
