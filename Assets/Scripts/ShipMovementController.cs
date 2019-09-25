@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShipMovement : MonoBehaviour
+public class ShipMovementController : MonoBehaviour
 {
     public float moveSpeed = 10f;
     public float turnSpeed = 0.01f;
