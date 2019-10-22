@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 1300540549}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -407,10 +407,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2031793810}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebdcf6b1c5f591543b54611567b482f0, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f517eb0d6a8a3e4689d0217b6d8f309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  boltPrefab: {fileID: 523467177674100543, guid: e397197e1beac114d903c885531843c6,
+    type: 3}
 --- !u!50 &2031793815
 Rigidbody2D:
   serializedVersion: 4

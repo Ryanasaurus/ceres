@@ -55,7 +55,9 @@ public class PlayerController : MonoBehaviour
         shootDirection.Normalize();
 
         GameObject bolt = Instantiate(boltPrefab, transform.position, Quaternion.identity);
-        bolt.GetComponent<Rigidbody2D>().velocity = shootDirection;
+        BoltController bc = bolt.GetComponent<BoltController>();
+        bc.velocity = shootDirection;
+        bc.shooter = gameObject;
         bolt.transform.Rotate(0.0f, 0.0f, Mathf.Atan2(rotateVector.y, rotateVector.x) * Mathf.Rad2Deg);
         Destroy(bolt, 2.0f);
     }
