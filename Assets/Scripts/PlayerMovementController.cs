@@ -23,6 +23,6 @@ public class PlayerMovementController : MonoBehaviour
         rotateVector = targetPosition - transform.position;
         float rotateAngle = (Mathf.Atan2(rotateVector.y, rotateVector.x) * Mathf.Rad2Deg) - 90;
         Quaternion rotation = Quaternion.AngleAxis(rotateAngle, Vector3.forward);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 5 * Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 1);
     }
 }
