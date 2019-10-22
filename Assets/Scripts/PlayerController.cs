@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovementController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5;
+    public GameObject boltPrefab;
+
     private Vector3 targetPosition;
     private Vector2 rotateVector;
 
@@ -16,10 +18,19 @@ public class PlayerMovementController : MonoBehaviour
 
     void Update()
     {
+        targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        rotateVector = targetPosition - transform.position;
+
         Move();
 
         //rotate player to cursor
-        RotateToCursor();        
+        RotateToCursor();  
+        
+        if(Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("fire");
+            Shoot();
+        }
     }
 
     private void Move()
@@ -32,11 +43,20 @@ public class PlayerMovementController : MonoBehaviour
     }
 
     private void RotateToCursor()
-    {
-        targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        rotateVector = targetPosition - transform.position;
+    {        
         float rotateAngle = (Mathf.Atan2(rotateVector.y, rotateVector.x) * Mathf.Rad2Deg) - 90;
         Quaternion rotation = Quaternion.AngleAxis(rotateAngle, Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 1);
+    }
+
+    private void Shoot()
+    {
+        Vector2 shootDirection = targetPosition - transform.position;
+        shootDirection.Normalize();
+
+        GameObject bolt = Instantiate(boltPrefab, transform.position, Quaternion.identity);
+        bolt.GetComponent<Rigidbody2D>().velocity = shootDirection;
+        bolt.transform.Rotate(0.0f, 0.0f, Mathf.Atan2(rotateVector.y, rotateVector.x) * Mathf.Rad2Deg);
+        Destroy(bolt, 2.0f);
     }
 }
